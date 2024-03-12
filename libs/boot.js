@@ -1,4 +1,4 @@
-const envLoader = require('../utils/env_loader');
+import envLoader from '../utils/env_loader';
 
 const startServer = (api) => {
   envLoader();
@@ -9,4 +9,4 @@ const startServer = (api) => {
   });
 };
 
-module.exports = startServer
+export default startServer;

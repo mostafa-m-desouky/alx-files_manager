@@ -1,14 +1,25 @@
-const { Request, Response, NextFunction } = require('express');
+/* eslint-disable no-unused-vars */
+import { Request, Response, NextFunction } from 'express';
 
-class APIError extends Error {
-    constructor(code, message) {
-      super();
-      this.code = code || 500;
-      this.message = message;
-    }
+/**
+ * Represents an error in this API.
+ */
+export class APIError extends Error {
+  constructor(code, message) {
+    super();
+    this.code = code || 500;
+    this.message = message;
   }
+}
 
-const errorResponse = (err, req, res, next) => {
+/**
+ * Applies Basic authentication to a route.
+ * @param {Error} err The error object.
+ * @param {Request} req The Express request object.
+ * @param {Response} res The Express response object.
+ * @param {NextFunction} next The Express next function.
+ */
+export const errorResponse = (err, req, res, next) => {
   const defaultMsg = `Failed to process ${req.url}`;
 
   if (err instanceof APIError) {
@@ -19,8 +30,3 @@ const errorResponse = (err, req, res, next) => {
     error: err ? err.message || err.toString() : defaultMsg,
   });
 };
-
-module.exports = {
-    APIError,
-    errorResponse
-}

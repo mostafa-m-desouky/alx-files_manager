@@ -1,7 +1,7 @@
-const express = require('express');
-const startServer = require('./libs/boot');
-const injectRoutes = require('./routes');
-const injectMiddlewares = require('./libs/middlewares');
+import express from 'express';
+import startServer from './libs/boot';
+import injectRoutes from './routes';
+import injectMiddlewares from './libs/middlewares';
 
 const server = express();
 
@@ -9,4 +9,4 @@ injectMiddlewares(server);
 injectRoutes(server);
 startServer(server);
 
-module.exports = {server}
+export default server;
